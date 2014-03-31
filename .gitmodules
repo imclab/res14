@@ -1,0 +1,9 @@
+[submodule "lib/three-outliner"]
+	path = lib/three-outliner
+	url = https://github.com/arodic/three-outliner.git
+[submodule "lib/three-attribute-editor"]
+	path = lib/three-attribute-editor
+	url = https://github.com/arodic/three-attribute-editor.git
+[submodule "lib/three-viewport-controls"]
+	path = lib/three-viewport-controls
+	url = https://github.com/arodic/three-viewport-controls.git
