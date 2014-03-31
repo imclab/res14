@@ -4,14 +4,29 @@
   <title>Resonate 2014</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
 
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+  
   <style>
     * {
       margin: 0;
       padding: 0;
     }
     body {
+      overflow: hidden;
       font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    }
+    #outliner {
+      top: 0;
+    }
+    #attributes {
+      top: 0;
+      right: 0;
+      max-width: 365px;
     }
   </style>
 </head>
@@ -22,9 +37,99 @@
 <script src="lib/polymer.js"></script>
 <script src="lib/three.js"></script>
 
-<link rel="import" href="elements/main-app.html">
+<link rel="import" href="lib/three-outliner/three-outliner.html">
+<link rel="import" href="lib/three-attribute-editor/three-attribute-editor.html">
+<link rel="import" href="lib/three-viewport-controls/three-viewport-controls.html">
 
-<main-app></main-app>
+<script type="text/javascript">
+  
+  var scope;
+  var renderer, camera, scene;
+  var controls, attributes, outliner;
+
+  var init = function() {
+    
+    renderer = new THREE.WebGLRenderer({antialias: false, devicePixelRatio: 1});
+    camera = new THREE.PerspectiveCamera(65, 1, 0.1, 1000);
+    scene = new THREE.Scene();
+
+    document.body.appendChild(renderer.domElement);
+
+    camera.position.set(3,3,3);
+    camera.lookAt(new THREE.Vector3(0,0,0));
+
+    var obj0 = new THREE.Mesh(new THREE.CubeGeometry(1,1,1));
+    var obj1 = new THREE.Mesh(new THREE.CubeGeometry(1,1,1));
+    var obj2 = new THREE.Mesh(new THREE.CubeGeometry(1,1,1));
+    var obj3 = new THREE.Mesh(new THREE.CubeGeometry(1,1,1));
+    var obj4 = new THREE.Mesh(new THREE.CubeGeometry(1,1,1));
+
+    obj0.name = 'object_obj0';
+    obj1.name = 'object_obj1';
+    obj2.name = 'object_obj2';
+    obj3.name = 'object_obj3';
+    obj4.name = 'object_obj4';
+
+    obj0.add(obj1);
+    obj0.add(obj2);
+    obj2.add(obj3);
+    obj3.add(obj4);
+    scene.add(obj0);
+
+    scene.add(camera);
+
+    window.addEventListener('polymer-ready', function(){
+
+      outliner = document.createElement('three-outliner');
+      document.body.appendChild(outliner);
+      outliner.id = "outliner";
+      outliner.scene = scene;
+
+      attributes = document.createElement('three-attribute-editor');
+      document.body.appendChild(attributes);
+      attributes.id = "attributes";
+      attributes.scene = scene;
+
+      window.addEventListener('three-attribute-changed', function(event){
+        if (event.detail.attribute == 'selected') {
+          if (event.detail.object && event.detail.object.selected) {
+            attributes.model = event.detail.object;
+          } else {
+            attributes.model = {};
+          }
+        }
+      });
+      
+      controls = document.createElement('three-viewport-controls');
+      document.body.appendChild(controls);
+      controls.id = "attributes";
+      controls.domElement = renderer.domElement;
+      controls.camera = camera;
+      controls.scene = scene;
+
+    });
+
+
+    window.addEventListener('resize', resize);
+    resize();
+    render();
+
+  };
+
+  var resize = function() {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = (window.innerWidth / window.innerHeight);
+    camera.updateProjectionMatrix();
+  };
+
+  var render = function() {
+    requestAnimationFrame(render);
+    renderer.render(scene, camera);
+  };
+
+  init();
+
+</script>
 
 </body>
 </html>
