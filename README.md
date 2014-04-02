@@ -7,7 +7,7 @@
 
 [@xyz_ak](https://twitter.com/xyz_ak)
 
-## Clone the repository with submodules included!
+## Clone the repository with submodules!
 `git clone https://github.com/arodic/res14.git --recursive`  
-or check out submodules after cloning:
+or check out submodules after cloning:  
 `git submodule update --init --recursive`
