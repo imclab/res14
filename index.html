@@ -5,12 +5,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
   
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="mobile-web-app-capable" content="yes">
-
-  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
-  
   <style>
     * {
       margin: 0;
@@ -36,6 +30,7 @@
 <script src="lib/platform.js"></script>
 <script src="lib/polymer.js"></script>
 <script src="lib/three.js"></script>
+<script src="js/gpxLoader.js"></script>
 
 <link rel="import" href="lib/three-outliner/three-outliner.html">
 <link rel="import" href="lib/three-attribute-editor/three-attribute-editor.html">
@@ -58,30 +53,6 @@
     camera.position.set(3,3,3);
     camera.lookAt(new THREE.Vector3(0,0,0));
     scene.add(camera);
-
-    var sphere = new THREE.Mesh(
-      new THREE.SphereGeometry(1,12, 12),
-      new THREE.MeshBasicMaterial({color: "red"})
-    );
-    sphere.name = 'object_obj0';
-    scene.add(sphere);
-    
-    var obj1 = new THREE.Mesh(new THREE.CubeGeometry(1,1,1));
-    obj1.name = 'object_obj1';
-    scene.add(obj1);
-    
-    var obj2 = new THREE.Mesh(new THREE.CubeGeometry(1,1,1));
-    obj2.name = 'object_obj2';
-    scene.add(obj2);
-    
-    var obj3 = new THREE.Mesh(new THREE.CubeGeometry(1,1,1));
-    obj3.name = 'object_obj3';
-    scene.add(obj3);
-    
-    var obj4 = new THREE.Mesh(new THREE.CubeGeometry(1,1,1));
-    obj4.name = 'object_obj4';
-    scene.add(obj4);
-
 
     window.addEventListener('polymer-ready', function(){
 
@@ -108,6 +79,15 @@
     window.addEventListener('resize', resize);
     resize();
     render();
+
+    var gpxLoader = new GpxLoader();
+
+    gpxLoader.onTrackLoaded = function(line){
+      scene.add(line);
+    };
+
+    gpxLoader.loadTracks('data/trackList.json');
+    // gpxLoader.loadTrack('data/json/201007.json');
 
   };
 
