@@ -5,9 +5,22 @@
 [Three.js](http://threejs.org/)  
 [Polymer Project](http://www.polymer-project.org/)
 
-#### Simple 3D Scene  
+#### Setting up three.js
 ```javascript
 renderer = new THREE.WebGLRenderer();  
 camera = new THREE.PerspectiveCamera(65, 1, 0.1, 1000);  
 scene = new THREE.Scene();  
+```
+#### Helper functions
+```javascript
+  var resize = function() {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = (window.innerWidth / window.innerHeight);
+    camera.updateProjectionMatrix();
+  };
+
+  var render = function() {
+    requestAnimationFrame(render);
+    renderer.render(scene, camera);
+  };
 ```
