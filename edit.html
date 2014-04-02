@@ -57,26 +57,31 @@
 
     camera.position.set(3,3,3);
     camera.lookAt(new THREE.Vector3(0,0,0));
-
-    var obj0 = new THREE.Mesh(new THREE.CubeGeometry(1,1,1));
-    var obj1 = new THREE.Mesh(new THREE.CubeGeometry(1,1,1));
-    var obj2 = new THREE.Mesh(new THREE.CubeGeometry(1,1,1));
-    var obj3 = new THREE.Mesh(new THREE.CubeGeometry(1,1,1));
-    var obj4 = new THREE.Mesh(new THREE.CubeGeometry(1,1,1));
-
-    obj0.name = 'object_obj0';
-    obj1.name = 'object_obj1';
-    obj2.name = 'object_obj2';
-    obj3.name = 'object_obj3';
-    obj4.name = 'object_obj4';
-
-    obj0.add(obj1);
-    obj0.add(obj2);
-    obj2.add(obj3);
-    obj3.add(obj4);
-    scene.add(obj0);
-
     scene.add(camera);
+
+    var sphere = new THREE.Mesh(
+      new THREE.SphereGeometry(1,12, 12),
+      new THREE.MeshBasicMaterial({color: "red"})
+    );
+    sphere.name = 'object_obj0';
+    scene.add(sphere);
+    
+    var obj1 = new THREE.Mesh(new THREE.CubeGeometry(1,1,1));
+    obj1.name = 'object_obj1';
+    scene.add(obj1);
+    
+    var obj2 = new THREE.Mesh(new THREE.CubeGeometry(1,1,1));
+    obj2.name = 'object_obj2';
+    scene.add(obj2);
+    
+    var obj3 = new THREE.Mesh(new THREE.CubeGeometry(1,1,1));
+    obj3.name = 'object_obj3';
+    scene.add(obj3);
+    
+    var obj4 = new THREE.Mesh(new THREE.CubeGeometry(1,1,1));
+    obj4.name = 'object_obj4';
+    scene.add(obj4);
+
 
     window.addEventListener('polymer-ready', function(){
 
@@ -89,16 +94,6 @@
       document.body.appendChild(attributes);
       attributes.id = "attributes";
       attributes.scene = scene;
-
-      window.addEventListener('three-attribute-changed', function(event){
-        if (event.detail.attribute == 'selected') {
-          if (event.detail.object && event.detail.object.selected) {
-            attributes.model = event.detail.object;
-          } else {
-            attributes.model = {};
-          }
-        }
-      });
       
       controls = document.createElement('three-viewport-controls');
       document.body.appendChild(controls);
