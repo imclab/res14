@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
   <title>Resonate 2014</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
   <style>
     * {
       margin: 0;
@@ -14,97 +13,13 @@
       overflow: hidden;
       font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     }
-    #outliner {
-      top: 0;
-    }
-    #attributes {
-      top: 0;
-      right: 0;
-      max-width: 365px;
-    }
   </style>
 </head>
-
 <body>
-
-<script src="lib/platform.js"></script>
-<script src="lib/polymer.js"></script>
 <script src="lib/three.js"></script>
-<script src="js/gpxLoader.js"></script>
-
-<link rel="import" href="lib/three-outliner/three-outliner.html">
-<link rel="import" href="lib/three-attribute-editor/three-attribute-editor.html">
-<link rel="import" href="lib/three-viewport-controls/three-viewport-controls.html">
-
 <script type="text/javascript">
   
-  var scope;
-  var renderer, camera, scene;
-  var controls, attributes, outliner;
-
-  var init = function() {
-    
-    renderer = new THREE.WebGLRenderer({antialias: false, devicePixelRatio: 1});
-    camera = new THREE.PerspectiveCamera(65, 1, 0.1, 1000);
-    scene = new THREE.Scene();
-
-    document.body.appendChild(renderer.domElement);
-
-    camera.position.set(3,3,3);
-    camera.lookAt(new THREE.Vector3(0,0,0));
-    scene.add(camera);
-
-    window.addEventListener('polymer-ready', function(){
-
-      outliner = document.createElement('three-outliner');
-      document.body.appendChild(outliner);
-      outliner.id = "outliner";
-      outliner.scene = scene;
-
-      attributes = document.createElement('three-attribute-editor');
-      document.body.appendChild(attributes);
-      attributes.id = "attributes";
-      attributes.scene = scene;
-      
-      controls = document.createElement('three-viewport-controls');
-      document.body.appendChild(controls);
-      controls.id = "attributes";
-      controls.domElement = renderer.domElement;
-      controls.camera = camera;
-      controls.scene = scene;
-
-    });
-
-
-    window.addEventListener('resize', resize);
-    resize();
-    render();
-
-    var gpxLoader = new GpxLoader();
-
-    gpxLoader.onTrackLoaded = function(line){
-      scene.add(line);
-    };
-
-    gpxLoader.loadTracks('data/trackList.json');
-    // gpxLoader.loadTrack('data/json/201007.json');
-
-  };
-
-  var resize = function() {
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    camera.aspect = (window.innerWidth / window.innerHeight);
-    camera.updateProjectionMatrix();
-  };
-
-  var render = function() {
-    requestAnimationFrame(render);
-    renderer.render(scene, camera);
-  };
-
-  init();
 
 </script>
-
 </body>
 </html>
