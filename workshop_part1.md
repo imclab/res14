@@ -1,15 +1,12 @@
-# Resonate 2014 Workshop
-
-**Resources:**  
-[Learning WebGL](http://learningwebgl.com/blog/?page_id=1217)  
-[Three.js](http://threejs.org/)  
-[Polymer Project](http://www.polymer-project.org/)
-
 #### Setting up three.js
 ```javascript
 renderer = new THREE.WebGLRenderer();  
 camera = new THREE.PerspectiveCamera(65, 1, 0.1, 1000);  
 scene = new THREE.Scene();  
+```
+After you create the renderer you have to add the canvas element to the document manually:
+```javascript
+document.body.appendChild(renderer.domElement);
 ```
 #### Helper functions
 ```javascript
