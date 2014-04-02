@@ -9,6 +9,8 @@ After you create the renderer you have to add the canvas element to the document
 document.body.appendChild(renderer.domElement);
 ```
 #### Helper functions
+The following code will resize the canvas to full window size and update the camera matrix accordingly.
+The render loop should use `requestAnimationFrame` method to make sure the rendering is in sync with browser's renderin cycle.
 ```javascript
 var resize = function() {
   renderer.setSize(window.innerWidth, window.innerHeight);
