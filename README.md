@@ -5,22 +5,9 @@
 [Three.js](http://threejs.org/)  
 [Polymer Project](http://www.polymer-project.org/)
 
-#### Setting up three.js
-```javascript
-renderer = new THREE.WebGLRenderer();  
-camera = new THREE.PerspectiveCamera(65, 1, 0.1, 1000);  
-scene = new THREE.Scene();  
-```
-#### Helper functions
-```javascript
-var resize = function() {
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  camera.aspect = (window.innerWidth / window.innerHeight);
-  camera.updateProjectionMatrix();
-};
+[@xyz_ak](https://twitter.com/xyz_ak)
 
-var render = function() {
-  requestAnimationFrame(render);
-  renderer.render(scene, camera);
-};
-```
+## Clone the repository with submodules!
+`git clone https://github.com/arodic/res14.git --recursive`  
+or check out submodules after cloning:  
+`git submodule update --init --recursive`
