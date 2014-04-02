@@ -24,7 +24,7 @@ var render = function() {
 };
 ```
 #### Adding objects to the scene
-Look up source for all [geometries](https://github.com/mrdoob/three.js/tree/master/src/extras/geometries) and [materials](https://github.com/mrdoob/three.js/tree/master/src/extras/materials)
+Look up source for all [geometries](https://github.com/mrdoob/three.js/tree/master/src/extras/geometries), [materials](https://github.com/mrdoob/three.js/tree/master/src/materials) and [lights](https://github.com/mrdoob/three.js/tree/master/src/lights)
 ```javascript
 var sphere = new THREE.Mesh(
   new THREE.SphereGeometry(1,12, 12),
