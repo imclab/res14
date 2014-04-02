@@ -6,8 +6,8 @@
 [Polymer Project](http://www.polymer-project.org/)
 
 #### Simple 3D Scene  
-`
+```javascript
 renderer = new THREE.WebGLRenderer();  
 camera = new THREE.PerspectiveCamera(65, 1, 0.1, 1000);  
 scene = new THREE.Scene();  
-`
+```
