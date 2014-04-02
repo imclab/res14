@@ -27,4 +27,14 @@ var line = new THREE.Line( geometry, material );
 
 Note that [THREE.Line](https://github.com/mrdoob/three.js/blob/master/src/objects/Line.js) takes optional type parameter such as `THREE.LinePieces`.
 
+#### Load point data with a xhttp request
+```javascript
+var xhttp = new XMLHttpRequest();
+xhttp.overrideMimeType('text/xml');
 
+xhttp.open('GET', path, false);
+xhttp.send(null);
+
+var data = JSON.parse(xhttp.responseText);
+var points = data.points;
+```
