@@ -1,4 +1,4 @@
-#### Setting up three.js
+## Setting up a basic three.js app
 ```javascript
 renderer = new THREE.WebGLRenderer();  
 camera = new THREE.PerspectiveCamera(65, 1, 0.1, 1000);  
@@ -10,7 +10,7 @@ document.body.appendChild(renderer.domElement);
 ```
 #### Helper functions
 The following code will resize the canvas to full window size and update the camera matrix accordingly.
-The render loop should use `requestAnimationFrame` method to make sure the rendering is in sync with browser's renderin cycle.
+The render loop should use `requestAnimationFrame` method to make sure the rendering is in sync with browser's rendering cycle.
 ```javascript
 var resize = function() {
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -23,3 +23,13 @@ var render = function() {
   renderer.render(scene, camera);
 };
 ```
+#### Adding objects to the scene
+Look up source for all [geometries](https://github.com/mrdoob/three.js/tree/master/src/extras/geometries) and [materials](https://github.com/mrdoob/three.js/tree/master/src/extras/materials)
+```javascript
+var sphere = new THREE.Mesh(
+  new THREE.SphereGeometry(1,12, 12),
+  new THREE.MeshBasicMaterial({color: "red"})
+);
+scene.add(sphere);
+```
+
