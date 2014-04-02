@@ -7,7 +7,7 @@
 
 #### Simple 3D Scene  
 `
-renderer = new THREE.WebGLRenderer({antialias: false, devicePixelRatio: 1});
-camera = new THREE.PerspectiveCamera(65, 1, 0.1, 1000);
-scene = new THREE.Scene();
+renderer = new THREE.WebGLRenderer();  
+camera = new THREE.PerspectiveCamera(65, 1, 0.1, 1000);  
+scene = new THREE.Scene();  
 `
