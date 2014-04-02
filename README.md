@@ -13,14 +13,14 @@ scene = new THREE.Scene();
 ```
 #### Helper functions
 ```javascript
-  var resize = function() {
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    camera.aspect = (window.innerWidth / window.innerHeight);
-    camera.updateProjectionMatrix();
-  };
+var resize = function() {
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.aspect = (window.innerWidth / window.innerHeight);
+  camera.updateProjectionMatrix();
+};
 
-  var render = function() {
-    requestAnimationFrame(render);
-    renderer.render(scene, camera);
-  };
+var render = function() {
+  requestAnimationFrame(render);
+  renderer.render(scene, camera);
+};
 ```
